@@ -31,7 +31,27 @@ without conflicts; `README.md` is Klipper's own.
   configuration holds them.
 - `REBUILD.md`: the rebuild guide of the Klipper host, until infra holds it as the host's own.
 
-## Fallback
+## Updating the MCU firmware
 
-The printer's Marlin configuration stays in the Marlin fork, on the branch for this board, so the board can be
-flashed back to Marlin.
+The board runs firmware built from the same commit as the host's Klipper: after a Klipper update in Mainsail, Klipper
+reports the board's older version, and the firmware is built and flashed again.
+
+The firmware is built on the host, in its clone of this branch; the build settings stay in the clone's `.config`,
+which git ignores, and the settings to choose are in the configuration file's header. The board's bootloader flashes
+a `firmware.bin` it finds on the board's SD card at power-on.
+
+- **The first flash** is by hand: `out/klipper.bin` copied as `firmware.bin` onto a FAT32 card, the card in the
+  board, the board powered on. The bootloader renames the file to `FIRMWARE.CUR` once flashed. The card stays in the
+  board.
+- **Every later flash** goes over the USB link: with Klipper stopped, Klipper's `scripts/flash-sdcard.sh` sends the
+  build through the running firmware onto that card, resets the board so the bootloader flashes it, and checks the
+  new version. Its board name is `btt-skr-pro-v1.2`, its device the board's serial port from `printer.cfg`:
+
+  ```bash
+  sudo systemctl stop klipper
+  cd ~/klipper && make clean && make
+  ./scripts/flash-sdcard.sh /dev/serial/by-id/usb-Klipper_stm32f407xx_SERIAL-if00 btt-skr-pro-v1.2
+  sudo systemctl start klipper
+  ```
+
+  A card that does not start up at the script's default SPI speed needs its `-s` option.
