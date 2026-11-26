@@ -143,11 +143,13 @@ ssh klipper-server 'cat > ~/printer_data/config/printer.cfg' <<'EOF'
 serial: /dev/serial/by-id/usb-Klipper_stm32f407xx_SERIAL-if00
 
 [extruder]
+control: pid
 pid_Kp: 14.96
 pid_Ki: 0.87
 pid_Kd: 64.62
 
 [heater_bed]
+control: pid
 pid_Kp: 161.12
 pid_Ki: 31.47
 pid_Kd: 549.95
