@@ -2,7 +2,6 @@
 
 ## Decisions for the admin
 
-- Which computer is the Klipper host: the one that runs OctoPrint now, or another one.
 - Which accelerometer to buy, and whether it connects to the host over USB or to the board or host by SPI.
 - What is connected to the board's UART 1 (Marlin enables a second serial port there); a Marlin-mode touch
   screen does not work with Klipper.
@@ -18,7 +17,7 @@
 ## Steps
 
 - Save the printer's `M503` output before Marlin is replaced.
-- Install Klipper, Moonraker and Mainsail on the host.
+- Hand the rebuild guide to an infra session as the klipper host's rebuild guide, then delete it here.
 - Build the Klipper MCU firmware for the SKR Pro and flash it.
 - Write the printer's configuration from the handoff, then delete the handoff.
 - Bring the printer up as the project's rules describe: directions, endstops and probe, PID, probe Z offset, bed

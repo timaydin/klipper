@@ -8,8 +8,9 @@ shaping, so the toolhead can be driven faster without ringing.
 
 - **Klipper MCU firmware** runs on the SKR Pro. It only drives the steppers, heaters, fans and sensors, on the
   host's commands.
-- **Klipper host (Klippy)** runs on a host computer connected to the board over USB. It reads `printer.cfg`,
-  plans the motion, including input shaping, and streams the steps to the board.
+- **Klipper host (Klippy)** runs on the host `klipper`, a Raspberry Pi 3 Model B+ connected to the board over USB.
+  It reads `printer.cfg`, plans the motion, including input shaping, and streams the steps to the board. The Pi is
+  an infra host: its system, network and access are infra's; the Klipper stack on it is this project's.
 - **Moonraker** gives Klippy a web API.
 - **Mainsail** is the web UI, served next to Moonraker; slicers upload jobs to Moonraker.
 - **An accelerometer** on the toolhead measures the frame's resonances for input-shaper calibration. Because the
@@ -24,6 +25,7 @@ without conflicts; `README.md` is Klipper's own.
   config folder as `printer.cfg`.
 - `HANDOFF.md`: the printer's settings carried over from its Marlin configuration, until the printer's
   configuration holds them.
+- `REBUILD.md`: the rebuild guide of the Klipper host, until infra holds it as the host's own.
 
 ## Fallback
 
