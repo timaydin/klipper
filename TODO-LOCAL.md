@@ -7,9 +7,6 @@
 ## Hardware facts to check
 
 - The TMC5160 module's sense resistor.
-- The motors' step angle (1.8° or 0.9°).
-- The supply voltage.
-- How the hotend fan is wired.
 - That the TMC2209 DIAG jumpers are removed.
 
 ## Steps
