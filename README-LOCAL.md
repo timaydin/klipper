@@ -1,7 +1,7 @@
 # Klipper for the T3 Dizayn CoreMax 300
 
 The printer's branch of the Klipper fork: its Klipper configuration, the build and update of its board's firmware,
-and the rebuild guide of its host. Klipper replaces Marlin on the printer to get accelerometer-calibrated input
+and the rebuild guide of its host. Klipper runs the printer for its accelerometer-calibrated input
 shaping, so the toolhead can be driven faster without ringing. The printer itself, its hardware and wiring, is
 described in the printer folder's README.
 

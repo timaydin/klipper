@@ -131,7 +131,7 @@ curl -s -X POST "http://klipper.home.arpa/machine/update/refresh?name=mainsail-c
 
 `printer.cfg` holds the printer's tuned values, so a rebuild restores it from its backup. Only a first install writes
 it new: the includes, the board's serial port, and the starting values Klipper needs before its first `SAVE_CONFIG`
-(Marlin's PID values and a probe offset of 0). `SAVE_CONFIG` later comments the starting values out and writes the
+(the PID values below and a probe offset of 0). `SAVE_CONFIG` later comments the starting values out and writes the
 tuned ones into its block at the end of the file.
 
 ```bash
