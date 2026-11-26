@@ -137,7 +137,7 @@ tuned ones into its block at the end of the file.
 ```bash
 ssh klipper-server 'cat > ~/printer_data/config/printer.cfg' <<'EOF'
 [include mainsail.cfg]
-[include ../../klipper/config/printer-diy-skr-pro.cfg]
+[include ../../klipper/config/printer-t3-dizayn-coremax-300.cfg]
 
 [mcu]
 serial: /dev/serial/by-id/usb-Klipper_stm32f407xx_SERIAL-if00
