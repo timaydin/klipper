@@ -1,6 +1,9 @@
 # Rules for the Klipper printer
 
-What the project is and how it is put together is in the local README.
+Our standard documents carry the suffix `-LOCAL`, so they never collide with upstream's:
+
+- `README-LOCAL.md`: what the project is and how it is put together.
+- `TODO-LOCAL.md`: the action items.
 
 ## Never
 
