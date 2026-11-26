@@ -3,8 +3,6 @@
 ## Decisions for the admin
 
 - Which accelerometer to buy, and whether it connects to the host over USB or to the board or host by SPI.
-- What is connected to the board's UART 1 (Marlin enables a second serial port there); a Marlin-mode touch
-  screen does not work with Klipper.
 
 ## Hardware facts to check
 
