@@ -127,11 +127,44 @@ ssh klipper-server 'sudo systemctl restart moonraker'
 curl -s -X POST "http://klipper.home.arpa/machine/update/refresh?name=mainsail-config"
 ```
 
-## 7. Checks
+## 7. printer.cfg
+
+`printer.cfg` holds the printer's tuned values, so a rebuild restores it from its backup. Only a first install writes
+it new: the includes, the board's serial port, and the starting values Klipper needs before its first `SAVE_CONFIG`
+(Marlin's PID values and a probe offset of 0). `SAVE_CONFIG` later comments the starting values out and writes the
+tuned ones into its block at the end of the file.
+
+```bash
+ssh klipper-server 'cat > ~/printer_data/config/printer.cfg' <<'EOF'
+[include mainsail.cfg]
+[include ../../klipper/config/printer-diy-skr-pro.cfg]
+
+[mcu]
+serial: /dev/serial/by-id/usb-Klipper_stm32f407xx_SERIAL-if00
+
+[extruder]
+pid_Kp: 14.96
+pid_Ki: 0.87
+pid_Kd: 64.62
+
+[heater_bed]
+pid_Kp: 161.12
+pid_Ki: 31.47
+pid_Kd: 549.95
+
+[probe]
+z_offset: 0
+EOF
+```
+
+Replace `SERIAL` with the board's: once the board runs Klipper's firmware, `ls /dev/serial/by-id/` on the host shows
+it. Then restart Klipper: `ssh klipper-server 'sudo systemctl restart klipper'`.
+
+## 8. Checks
 
 - `ssh klipper-server 'systemctl is-active klipper moonraker nginx'`: all three active.
 - `http://klipper.home.arpa/` serves Mainsail; `http://klipper.home.arpa/server/info` shows no failed components and
-  no warnings. Klippy is in `error` until `printer.cfg` exists.
+  no warnings. Klippy is in `error` until `printer.cfg` exists and the board runs Klipper's firmware.
 - `http://klipper.home.arpa/machine/update/status`: `klipper`, `moonraker`, `mainsail` and `mainsail-config` valid.
   Klipper's warning about an unofficial remote is expected: updates come from the fork's branch.
 

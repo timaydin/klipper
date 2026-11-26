@@ -21,8 +21,12 @@ shaping, so the toolhead can be driven faster without ringing.
 The project is a branch of the Klipper fork. Upstream's files stay unchanged, so the branch follows upstream
 without conflicts; `README.md` is Klipper's own.
 
-- `config/printer-diy-skr-pro.cfg`: the printer's Klipper configuration, installed into the host's Klipper
-  config folder as `printer.cfg`.
+- `config/printer-diy-skr-pro.cfg`: the printer's Klipper configuration, everything but what is tuned on the
+  printer. The host reads it from its own clone of this branch, so a Klipper update in Mainsail also updates the
+  configuration.
+- The host's `printer.cfg`, in its Klipper config folder, is not in the repo: it includes Mainsail's macros and the
+  configuration above, and holds what belongs to this host and this printer alone, the board's serial port and the
+  values `SAVE_CONFIG` writes (PID, probe offset, bed mesh, input shaper).
 - `HANDOFF.md`: the printer's settings carried over from its Marlin configuration, until the printer's
   configuration holds them.
 - `REBUILD.md`: the rebuild guide of the Klipper host, until infra holds it as the host's own.
